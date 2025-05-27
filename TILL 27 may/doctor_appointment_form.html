@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doctor Appointment Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+  }
+  h2 {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid brown;
+    padding-bottom: 8px;
+    max-width: 400px;
+    margin: 0 auto 30px auto;
+  }
+  form {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  label {
+    display: inline-block;
+    width: 140px;
+    vertical-align: top;
+    margin-top: 8px;
+    font-weight: bold;
+  }
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  textarea {
+    width: 250px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-left: 10px;
+  }
+  .name-fields input {
+    width: 120px;
+  }
+  .address-fields input {
+    width: 120px;
+    margin-right: 10px;
+  }
+  textarea {
+    resize: vertical;
+  }
+  .appointment-types {
+    margin-left: 150px;
+    margin-bottom: 20px;
+  }
+  .submit-btn {
+    margin-left: 150px;
+  }
+</style>
+</head>
+<body>
+
+<h2>Doctor Appointment Form</h2>
+<form action="#" method="post">
+  <label for="date">Appointment Date</label>
+  <input type="date" id="date" name="appointment_date" required><br />
+
+  <label for="time">Appointment Time</label>
+  <input type="time" id="time" name="appointment_time" required><br />
+
+  <label>Name</label>
+  <div class="name-fields" style="display: inline-block;">
+    <input type="text" name="first_name" placeholder="First" required />
+    <input type="text" name="last_name" placeholder="Last" required />
+  </div><br />
+
+  <label>Gender</label>
+  <input type="radio" id="male" name="gender" value="male" required />
+  <label for="male" style="font-weight: normal;">Male</label>
+  <input type="radio" id="female" name="gender" value="female" required />
+  <label for="female" style="font-weight: normal;">Female</label><br />
+
+  <label for="phone">Phone</label>
+  <input type="text" id="phone" name="phone" placeholder="Phone number" /><br />
+
+  <label>Address</label>
+  <div class="address-fields" style="display: inline-block;">
+    <input type="text" name="city" placeholder="City" />
+    <input type="text" name="state" placeholder="State" />
+  </div><br />
+
+  <label for="query">Your Query</label>
+  <textarea id="query" name="query" rows="4" cols="40" placeholder="Describe your query"></textarea><br />
+
+  <label>Appointment Type</label>
+  <div class="appointment-types">
+    <input type="checkbox" id="cervix" name="appointment_type" value="cervix_checkup" />
+    <label for="cervix">Cervix checkup</label><br />
+    <input type="checkbox" id="heart" name="appointment_type" value="heart_checkup" />
+    <label for="heart">Heart checkup</label><br />
+    <input type="checkbox" id="eye" name="appointment_type" value="eye_checkup" />
+    <label for="eye">Eye check-up</label><br />
+    <input type="checkbox" id="hearing" name="appointment_type" value="hearing_test" />
+    <label for="hearing">Hearing Test</label>
+  </div>
+
+  <div class="submit-btn">
+    <input type="submit" value="Send" />
+  </div>
+</form>
+
+</body>
+</html>
