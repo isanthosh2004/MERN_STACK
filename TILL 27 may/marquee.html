@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Image in Marquee</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px 40px;
+    background: white;
+    color: black;
+  }
+  h3 {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  p.description {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .marquee-container {
+    margin-top: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  .marquee-content {
+    display: inline-block;
+    animation: marquee 15s linear infinite;
+  }
+  .marquee-content img {
+    height: 150px;
+    vertical-align: middle;
+    margin-right: 20px;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0%);}
+    to { transform: translateX(-50%);}
+  }
+</style>
+</head>
+<body>
+
+<h3>Image in Marquee</h3>
+
+<p class="description">
+  On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert titles, headers, footers, lists, cover pages, and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate with your current document look. You can easily change the formatting of selected text in the document itself by choosing a look for the selected text from the Quick Styles gallery on the Home tab. You can also insert text directly by typing the text content on the Insert tab. Most content comes 
+  <em>along the side from the current themes</em> or using a similar theme to bring a similar style to your page directly. To change the overall look of your document, choose new Theme elements on the Page Layout tab. To change the looks available in the Quick Style gallery, use the Change Current Quick Style Set command. Both the Themes gallery and the Quick Styles gallery provide neat commands so that you can always restore the look of your document to the original contained in your current template. On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert titles, headers, footers, lists, cover pages, and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate with your current document look.
+</p>
+
+<div class="marquee-container" aria-label="Marquee of images">
+  <div class="marquee-content" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Illustration 1" />
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Illustration 2" />
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Illustration 3" />
+  </div>
+</div>
+
+</body>
+</html>
