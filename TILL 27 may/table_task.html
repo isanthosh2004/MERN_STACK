@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Table Task</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px 40px;
+    background: white;
+
+  }
+  .header-arrow::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -25px;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 25px solid #27540b;
+  }
+
+  /* First table styles */
+  table.first-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #98d3d9; /* light turquoise */
+    color: black;
+    font-size: 13px;
+  }
+  table.first-table thead tr {
+    background-color: #98d3d9;
+  }
+  table.first-table th, table.first-table td {
+    padding: 8px 12px;
+    border: 1px solid #98d3d9; /* matches background for seamless */
+    text-align: left;
+  }
+  table.first-table tbody tr {
+    background-color: #98d3d9;
+  }
+
+  /* Second table container with rounded corners */
+  .rounded-table {
+    background-color: #98d3d9;
+    padding: 10px 15px;
+    border-radius: 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  table.rounded-table-inner {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 15px 8px;
+    font-size: 13px;
+    color: black;
+  }
+  table.rounded-table-inner thead tr {
+    background-color: #98d3d9;
+  }
+  table.rounded-table-inner th, table.rounded-table-inner td {
+    background-color: #98d3d9;
+    padding: 8px 12px;
+    border: 1px solid #98d3d9;
+    border-radius: 15px;
+    text-align: left;
+    user-select: none;
+  }
+  table.rounded-table-inner th {
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+
+
+<table class="first-table" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <td>John</td>
+      <td>Doe</td>
+      <td>80</td>
+    </tr>
+  </tbody>
+</table>
+
+<br /><br />
+
+<div class="rounded-table">
+  <table class="rounded-table-inner" cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Eve</td>
+        <td>Jackson</td>
+        <td>94</td>
+      </tr>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>80</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
