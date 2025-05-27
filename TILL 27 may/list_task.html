@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>List Task</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px 40px;
+    background: white;
+  }
+  /* Arrow-shaped green header */
+  .header-arrow {
+    display: inline-block;
+    background-color: #27540b; /* dark green */
+    color: white;
+    font-weight: bold;
+    padding: 8px 30px 8px 20px;
+    position: relative;
+    margin-bottom: 25px;
+    font-size: 14px;
+    user-select: none;
+  }
+  .header-arrow::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -25px;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 25px solid #27540b;
+  }
+
+  /* Content box */
+  .content-box {
+    border: 1px solid black;
+    padding: 15px 25px;
+    width: 300px;
+    font-size: 14px;
+  }
+  .content-box ul {
+    margin: 8px 0 0 20px;
+    padding-left: 0;
+  }
+  .content-box ul ul {
+    margin-left: 20px;
+  }
+
+  /* Nested list bullet style */
+  ul {
+    list-style-type: disc;
+  }
+  ul ul {
+    list-style-type: circle;
+  }
+
+  /* Colored diamond pattern area bottom-left - replicate as simple squares for now */
+  .diamond-pattern {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 3px;
+  }
+  .diamond {
+    width: 25px;
+    height: 25px;
+    transform: rotate(45deg);
+    opacity: 0.8;
+  }
+  .green { background-color: #27810b; }
+  .lightgreen { background-color: #87bc2b; }
+  .blue { background-color: #2073d4; }
+  .purple { background-color: #9c27b0; }
+  .pink { background-color: #d52871; }
+</style>
+</head>
+<body>
+
+
+
+<div class="content-box">
+  Lists can be nested (list inside list):
+  <ul>
+    <li>Coffee</li>
+    <li>Tea
+      <ul>
+        <li>Black tea</li>
+        <li>Green tea</li>
+      </ul>
+    </li>
+    <li>Milk</li>
+  </ul>
+</div>
+
+
+
+</body>
+</html>
