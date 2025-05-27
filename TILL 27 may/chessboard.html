@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Checkerboard</title>
+<style>
+  body {
+    background-color: #ffffff; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .checkerboard {
+    border: 3px solid white;
+    box-sizing: content-box; /* to keep border outside squares */
+    display: grid;
+    grid-template-columns: repeat(8, 40px);
+    grid-template-rows: repeat(8, 40px);
+  }
+  .checkerboard div {
+    width: 40px;
+    height: 40px;
+  }
+  /* Pink and black squares */
+  .checkerboard div:nth-child(even) {
+    background-color: pink;
+  }
+  .checkerboard div:nth-child(odd) {
+    background-color: black;
+  }
+
+</style>
+</head>
+<body>
+  <div class="checkerboard">
+
+  </div>
+
+<script>
+  // Generate 8x8 checkerboard with pink and black squares
+  const board = document.querySelector('.checkerboard');
+  for(let row = 0; row < 8; row++) {
+    for(let col = 0; col < 8; col++) {
+      const square = document.createElement('div');
+      // Color logic: if sum of row+col is even, pink, else black
+      if((row + col) % 2 === 0) {
+        square.style.backgroundColor = 'pink';
+      } else {
+        square.style.backgroundColor = 'black';
+      }
+      board.appendChild(square);
+    }
+  }
+</script>
+</body>
+</html>
