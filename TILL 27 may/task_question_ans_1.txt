@@ -1,0 +1,16 @@
+1. How to set justify property in the paragraph elements?
+You can set the text alignment to justified by using the CSS property:
+text-align: justify;
+
+2. How to add shadow to text?
+You can add shadow to text using the CSS property:
+text-shadow: [horizontal offset] [vertical offset] [blur radius] [color];
+For example:
+text-shadow: 2px 2px 5px gray;
+
+3. How to specify all the font properties in one declaration?
+You can use the shorthand CSS property font to specify multiple font properties in one declaration. The syntax is:
+font: [font-style] [font-variant] [font-weight] [font-size]/[line-height] [font-family];
+For example:
+font: italic small-caps bold 16px/1.5 Arial, sans-serif;
+
