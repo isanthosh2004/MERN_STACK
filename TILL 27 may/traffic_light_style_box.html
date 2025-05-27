@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Course Buttons</title>
+<style>
+  body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .arch-container {
+    width: 180px;
+    background: linear-gradient(180deg, #f9a825, #ef6c00);
+    border-radius: 90px 90px 20px 20px;
+    padding: 20px 0;
+    box-sizing: border-box;
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+  }
+  .button {
+    width: 140px;
+    margin: 10px auto;
+    padding: 12px 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    border-radius: 6px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    user-select: none;
+  }
+  .mca {
+    background-color: #d32f2f; /* red */
+  }
+  .bca {
+    background-color: #fbc02d; /* yellow */
+    color: black;
+  }
+  .bba {
+    background-color: #388e3c; /* green */
+  }
+</style>
+</head>
+<body>
+
+<div class="arch-container" role="group" aria-label="Courses">
+  <div class="button mca" tabindex="0">MCA</div>
+  <div class="button bca" tabindex="0">BCA</div>
+  <div class="button bba" tabindex="0">BBA</div>
+</div>
+
+</body>
+</html>
