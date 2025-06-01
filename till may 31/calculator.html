@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background: #666;
+      padding: 18px 12px 18px 12px;
+      border-radius: 6px;
+      box-shadow: 3px 5px 10px #88888855;
+      width: 280px;
+    }
+    .display {
+      width: 100%;
+      height: 48px;
+      background: #fff;
+      border: none;
+      border-radius: 2px;
+      font-size: 2rem;
+      text-align: right;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      box-sizing: border-box;
+      color: #222;
+      pointer-events: none;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+    .btn {
+      background: #2ed0c4;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.3rem;
+      padding: 16px 0;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 4px #0002;
+    }
+    .btn:active {
+      background: #22b9a7;
+    }
+    .btn.operator {
+      background: #1db8a6;
+    }
+    .btn.equal {
+      background: #2196f3;
+    }
+    .btn.clear {
+      background: #ff5252;
+    }
+    .btn:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" class="display" id="display" value="0" readonly>
+    <div class="buttons">
+      <button class="btn clear" onclick="clearDisplay()">C</button>
+      <button class="btn operator" onclick="appendOperator('%')">%</button>
+      <button class="btn operator" onclick="backspace()">&larr;</button>
+      <button class="btn operator" onclick="appendOperator('/')">/</button>
+      
+      <button class="btn" onclick="appendNumber('7')">7</button>
+      <button class="btn" onclick="appendNumber('8')">8</button>
+      <button class="btn" onclick="appendNumber('9')">9</button>
+      <button class="btn operator" onclick="appendOperator('*')">*</button>
+      
+      <button class="btn" onclick="appendNumber('4')">4</button>
+      <button class="btn" onclick="appendNumber('5')">5</button>
+      <button class="btn" onclick="appendNumber('6')">6</button>
+      <button class="btn operator" onclick="appendOperator('-')">-</button>
+      
+      <button class="btn" onclick="appendNumber('1')">1</button>
+      <button class="btn" onclick="appendNumber('2')">2</button>
+      <button class="btn" onclick="appendNumber('3')">3</button>
+      <button class="btn operator" onclick="appendOperator('+')">+</button>
+      
+      <button class="btn" onclick="appendNumber('00')">00</button>
+      <button class="btn" onclick="appendNumber('0')">0</button>
+      <button class="btn" onclick="appendDot()">.</button>
+      <button class="btn equal" onclick="calculateResult()">=</button>
+    </div>
+  </div>
+  <script>
+    let display = document.getElementById('display');
+    let currentInput = "0";
+    let lastInput = "";
+    let resultShown = false;
+
+    function updateDisplay() {
+      display.value = currentInput;
+    }
+
+    function appendNumber(num) {
+      if (resultShown) {
+        currentInput = num === "00" ? "0" : num;
+        resultShown = false;
+      } else {
+        if (currentInput === "0") {
+          currentInput = num;
+        } else {
+          currentInput += num;
+        }
+      }
+      updateDisplay();
+    }
+
+    function appendOperator(op) {
+      if (resultShown) resultShown = false;
+      let lastChar = currentInput.slice(-1);
+      if ("+-*/%".includes(lastChar)) {
+        currentInput = currentInput.slice(0, -1) + op;
+      } else {
+        currentInput += op;
+      }
+      updateDisplay();
+    }
+
+    function appendDot() {
+      let parts = currentInput.split(/[\+\-\*\/%]/);
+      let last = parts[parts.length - 1];
+      if (!last.includes('.')) {
+        currentInput += '.';
+        updateDisplay();
+      }
+    }
+
+    function clearDisplay() {
+      currentInput = "0";
+      updateDisplay();
+    }
+
+    function backspace() {
+      if (resultShown) {
+        currentInput = "0";
+        resultShown = false;
+      } else {
+        currentInput = currentInput.slice(0, -1);
+        if (currentInput === "" || currentInput === "-") currentInput = "0";
+      }
+      updateDisplay();
+    }
+
+    function calculateResult() {
+      try {
+        let expression = currentInput.replace(/%/g, '/100');
+        let result = eval(expression);
+        if (result === undefined || isNaN(result)) {
+          currentInput = "0";
+        } else {
+          currentInput = result.toString();
+        }
+        resultShown = true;
+        updateDisplay();
+      } catch (e) {
+        currentInput = "Error";
+        resultShown = true;
+        updateDisplay();
+      }
+    }
+  </script>
+</body>
+</html>
