@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>School Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      background: #223140;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .profile-photo {
+      position: absolute;
+      top: 50px;
+      right: 80px;
+      width: 110px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      border: 2px solid #e0e0e0;
+    }
+    .dashboard-container {
+      display: flex;
+      flex-direction: row;
+      margin-top: 180px;
+      background: none;
+      width: 900px;
+      max-width: 98vw;
+      min-height: 320px;
+      box-shadow: none;
+    }
+    .sidebar {
+      width: 180px;
+      background: linear-gradient(135deg, #4cd964 0%, #a8e063 100%);
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      padding: 32px 0 32px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 320px;
+    }
+    .sidebar-title {
+      color: #fff;
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin-left: 24px;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+    .sidebar ul li {
+      padding: 10px 0 10px 28px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sidebar ul li:hover,
+    .sidebar ul li.active {
+      background: rgba(255,255,255,0.13);
+      color: #2e7d32;
+    }
+    .main-content {
+      background: #f6f7fb;
+      flex: 1;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      padding: 32px 30px 32px 30px;
+      min-width: 340px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .main-content h2 {
+      color: #4cd964;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 28px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    .stats-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 22px 28px;
+      margin-top: 8px;
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 22px 0 16px 0;
+      text-align: center;
+      min-width: 120px;
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .stat-title {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 7px;
+    }
+    .stat-value {
+      color: #4cd964;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    @media (max-width: 1000px) {
+      .dashboard-container {
+        width: 99vw;
+        min-width: 0;
+      }
+    }
+    @media (max-width: 700px) {
+      .dashboard-container {
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 120px;
+      }
+      .sidebar {
+        border-radius: 8px 8px 0 0;
+        width: 100%;
+        min-height: 0;
+        padding: 18px 0 10px 0;
+        flex-direction: row;
+        align-items: center;
+        overflow-x: auto;
+      }
+      .sidebar-title {
+        margin-bottom: 0;
+        margin-right: 18px;
+        margin-left: 10px;
+      }
+      .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+      }
+      .sidebar ul li {
+        padding: 8px 14px;
+        min-width: 90px;
+      }
+      .main-content {
+        border-radius: 0 0 8px 8px;
+        padding: 18px 10px 18px 10px;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+        grid-gap: 14px 0;
+      }
+    }
+    @media (max-width: 450px) {
+      .profile-photo {
+        width: 70px;
+        height: 50px;
+        top: 16px;
+        right: 8px;
+      }
+      .dashboard-container {
+        margin-top: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Replace the src below with your own image if needed -->
+  <img class="profile-photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQoYalG0iZwdwwSFMhNL4aDADjcSJFcuo31Y9OY6saF8ZG5dq3lLc8uXw0eJfUwvdwjTw&usqp=CAU" alt="profile photo">
+  <div class="dashboard-container">
+    <nav class="sidebar">
+      <div class="sidebar-title">School Dashboard</div>
+      <ul>
+        <li class="active">Dashboard</li>
+        <li>Students</li>
+        <li>Teachers</li>
+        <li>Classes</li>
+        <li>Exams</li>
+        <li>Library</li>
+        <li>Settings</li>
+      </ul>
+    </nav>
+    <main class="main-content">
+      <h2>Welcome to the School Dashboard</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-title">Total Students</div>
+          <div class="stat-value">500</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Total Teachers</div>
+          <div class="stat-value">50</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Classes</div>
+          <div class="stat-value">20</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Upcoming Exams</div>
+          <div class="stat-value">5</div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
