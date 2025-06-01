@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Music World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #223140;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #fff;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: rgba(20, 30, 50, 0.96);
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+      padding: 18px 18px 28px 18px;
+      border: 1.5px solid #333;
+    }
+    .header {
+      padding: 18px 0 8px 0;
+      border-bottom: 2px solid #3a4a5a;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .header h1 {
+      color: #fff;
+      font-size: 2rem;
+      font-family: 'Georgia', serif;
+      letter-spacing: 1.5px;
+      margin: 0 0 8px 8px;
+      text-shadow: 0 2px 8px #0c1a2a;
+    }
+    nav {
+      margin-bottom: 10px;
+      padding-left: 6px;
+    }
+    nav button {
+      background: #1a2636;
+      color: #fff;
+      border: 1px solid #3a4a5a;
+      border-radius: 3px;
+      margin-right: 7px;
+      padding: 7px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    nav button:hover {
+      background: #2c3e5b;
+    }
+    .section {
+      margin-top: 24px;
+      background: rgba(25, 35, 55, 0.92);
+      border-radius: 5px;
+      border: 1px dashed #3a4a5a;
+      padding: 12px 10px 18px 10px;
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-size: 1.15rem;
+      color: #ffe082;
+      margin-bottom: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-left: 4px solid #ffe082;
+      padding-left: 10px;
+    }
+    .album-row {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 16px;
+      padding-bottom: 12px;
+    }
+    .album-card {
+      background: #1a2636;
+      border-radius: 4px;
+      border: 1px solid #3a4a5a;
+      width: 110px;
+      min-width: 110px;
+      margin-right: 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: transform 0.13s;
+    }
+    .album-card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 4px 18px #1e2636;
+    }
+    .album-card img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 4px 4px 0 0;
+      margin-bottom: 0;
+      border-bottom: 1px solid #3a4a5a;
+    }
+    .album-title {
+      font-size: 0.98rem;
+      color: #fff;
+      margin: 7px 0 2px 0;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 4px;
+    }
+    .album-artist {
+      font-size: 0.9rem;
+      color: #b3c0d1;
+      margin-bottom: 7px;
+      padding: 0 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 700px) {
+      .container {
+        max-width: 99vw;
+        padding: 8px 2vw 18px 2vw;
+      }
+      .album-row {
+        gap: 10px;
+      }
+      .album-card {
+        width: 88px;
+        min-width: 88px;
+      }
+      .album-card img {
+        height: 88px;
+      }
+    }
+    ::-webkit-scrollbar {
+      height: 7px;
+      background: #1a2636;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3a4a5a;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Music World</h1>
+      <nav>
+        <button>HOME</button>
+        <button>ABOUT US</button>
+        <button>CATEGORY</button>
+        <button>PRODUCTION</button>
+        <button>GALLERY</button>
+        <button>CONTACT US</button>
+        <button>LOGIN</button>
+      </nav>
+    </div>
+    <div class="section">
+      <div class="section-title">&rarr; Latest Album ...</div>
+      <div class="album-row">
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="Album 1">
+          <div class="album-title">Midnight Drive</div>
+          <div class="album-artist">Night Riders</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Album 2">
+          <div class="album-title">Electric Heart</div>
+          <div class="album-artist">Synthwave</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Album 3">
+          <div class="album-title">Angry Birds</div>
+          <div class="album-artist">Game OST</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Album 4">
+          <div class="album-title">Green Groove</div>
+          <div class="album-artist">Funky Frogs</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="Album 5">
+          <div class="album-title">Echoes</div>
+          <div class="album-artist">The Wanderers</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Album 6">
+          <div class="album-title">Electric Heart</div>
+          <div class="album-artist">Synthwave</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="Album 7">
+          <div class="album-title">Midnight Drive</div>
+          <div class="album-artist">Night Riders</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">&rarr; TOP 10 Songs ...</div>
+      <div class="album-row">
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Song 1">
+          <div class="album-title">Angry Birds</div>
+          <div class="album-artist">Game OST</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Song 2">
+          <div class="album-title">Green Groove</div>
+          <div class="album-artist">Funky Frogs</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="Song 3">
+          <div class="album-title">Midnight Drive</div>
+          <div class="album-artist">Night Riders</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="Song 4">
+          <div class="album-title">Echoes</div>
+          <div class="album-artist">The Wanderers</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Song 5">
+          <div class="album-title">Electric Heart</div>
+          <div class="album-artist">Synthwave</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Song 6">
+          <div class="album-title">Green Groove</div>
+          <div class="album-artist">Funky Frogs</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="Song 7">
+          <div class="album-title">Midnight Drive</div>
+          <div class="album-artist">Night Riders</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="Song 8">
+          <div class="album-title">Echoes</div>
+          <div class="album-artist">The Wanderers</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Song 9">
+          <div class="album-title">Electric Heart</div>
+          <div class="album-artist">Synthwave</div>
+        </div>
+        <div class="album-card">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Song 10">
+          <div class="album-title">Angry Birds</div>
+          <div class="album-artist">Game OST</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">&rarr; Top 10 Artist ...</div>
+      <div style="color:#b3c0d1; padding: 10px 0 5px 8px; font-size:1rem;">
+        1. Night Riders &nbsp;&nbsp; 2. Synthwave &nbsp;&nbsp; 3. Funky Frogs &nbsp;&nbsp; 4. The Wanderers &nbsp;&nbsp; 5. Game OST <br>
+        6. Electro Beat &nbsp;&nbsp; 7. Chill Masters &nbsp;&nbsp; 8. Groove Makers &nbsp;&nbsp; 9. Indie Soul &nbsp;&nbsp; 10. Pop Stars
+      </div>
+    </div>
+  </div>
+</body>
+</html>
