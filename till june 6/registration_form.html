@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Registration Form</title>
+
+<!-- ─── CSS ─────────────────────────────────────────────────────────────── -->
+<style>
+  :root{
+    --brand: #2f5724;      /* dark green banner */
+    --error: #c0002b;      /* crimson error colour */
+    --field-border: #bfbfbf;
+  }
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    background:#f6f9fc;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+  }
+
+  /* green banner (arrow) at top-left */
+  .banner{
+    position:fixed;
+    top:0; left:0;
+    width:220px; height:42px;
+    background:var(--brand);
+    color:#fff; font-weight:600;
+    line-height:42px; padding-left:18px;
+    clip-path:polygon(0 0, 87% 0, 100% 50%, 87% 100%, 0 100%);
+  }
+
+  /* the container card */
+  .wrapper{
+    background:#fff;
+    width:540px;
+    margin:80px auto 60px;
+    padding:50px 70px 60px;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+    border-radius:2px;
+    position:relative;
+  }
+
+  h2{
+    text-align:center;
+    margin-top:0;
+    margin-bottom:35px;
+    font-size:1.3rem;
+  }
+
+  /* labels and inputs layout */
+  .form-row{
+    display:flex;
+    align-items:flex-start;
+    margin-bottom:18px;
+  }
+  .form-row label{
+    width:90px;
+    padding-top:6px;
+  }
+  .form-row input,
+  .form-row textarea{
+    flex:1;
+    padding:6px 8px;
+    border:1px solid var(--field-border);
+    border-radius:3px;
+    font-size:15px;
+    resize:vertical;
+  }
+  .form-row textarea{ height:90px; }
+
+  /* error message area */
+  .error-msg{
+    width:220px;
+    padding-left:12px;
+    font-size:.9rem;
+    color:var(--error);
+  }
+
+  /* error state styles */
+  .invalid input,
+  .invalid textarea{
+    border-color:var(--error);
+  }
+  .invalid label{ color:var(--error); }
+
+  button{
+    display:block;
+    margin:15px auto 0;
+    padding:7px 28px;
+    font-size:15px;
+    background:#d9d9d9;
+    border:1px solid #aaa;
+    border-radius:3px;
+    cursor:pointer;
+    transition:background .2s;
+  }
+  button:hover{ background:#c4c4c4; }
+
+  /* little colourful mosaic bottom-left (decorative) */
+  .mosaic{
+    position:absolute;
+    bottom:-14px; left:-14px;
+    width:160px; height:160px;
+    background:
+      linear-gradient(135deg,#16a085 25%,transparent 25%) -40px 0,
+      linear-gradient(225deg,#27ae60 25%,transparent 25%) -40px 0,
+      linear-gradient(315deg,#2980b9 25%,transparent 25%),
+      linear-gradient(45deg,#8e44ad 25%,transparent 25%);
+    background-size:80px 80px;
+    border-top-right-radius:6px;
+  }
+</style>
+</head>
+<body>
+
+
+
+<!-- ─── FORM ────────────────────────────────────────────────────────────── -->
+<div class="wrapper">
+  <h2>Registration Form</h2>
+
+  <form id="regForm" novalidate>
+    <!-- Name -->
+    <div class="form-row" id="row-name">
+      <label for="name">Name:</label>
+      <input  type="text" id="name" name="name">
+      <span   class="error-msg"></span>
+    </div>
+    <!-- Email -->
+    <div class="form-row" id="row-email">
+      <label for="email">Email:</label>
+      <input  type="email" id="email" name="email">
+      <span   class="error-msg"></span>
+    </div>
+    <!-- Website -->
+    <div class="form-row" id="row-url">
+      <label for="url">Website:</label>
+      <input  type="url" id="url" name="url">
+      <span   class="error-msg"></span>
+    </div>
+    <!-- Message -->
+    <div class="form-row" id="row-msg">
+      <label for="msg">Message:</label>
+      <textarea id="msg" name="msg"></textarea>
+      <span   class="error-msg"></span>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- mosaic decoration -->
+
+</div>
+
+<!-- ─── JavaScript ──────────────────────────────────────────────────────── -->
+<script>
+  const form = document.getElementById('regForm');
+
+  /* helper to flag a row invalid & place message */
+  function setError(rowId, message){
+    const row = document.getElementById(rowId);
+    row.classList.add('invalid');
+    row.querySelector('.error-msg').textContent = message;
+  }
+  function clearError(rowId){
+    const row = document.getElementById(rowId);
+    row.classList.remove('invalid');
+    row.querySelector('.error-msg').textContent = '';
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();          // keep page from reloading
+    let ok = true;               // track overall validity
+
+    /* 1. Name ------------------------------------------------------------ */
+    const name = form.name.value.trim();
+    if(!name){
+      setError('row-name','This field is required');
+      ok = false;
+    }else{
+      clearError('row-name');
+    }
+
+    /* 2. Email ----------------------------------------------------------- */
+    const email = form.email.value.trim();
+    const emailRE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!email){
+      setError('row-email','A valid email address is required');
+      ok = false;
+    }else if(!emailRE.test(email)){
+      setError('row-email','Please enter a valid email');
+      ok = false;
+    }else{
+      clearError('row-email');
+    }
+
+    /* 3. Website --------------------------------------------------------- */
+    const url = form.url.value.trim();
+    try{
+      if(!url){
+        setError('row-url','A valid url is required');
+        ok = false;
+      }else{
+        new URL(url);                    // throws on invalid url
+        clearError('row-url');
+      }
+    }catch{
+      setError('row-url','Enter a valid URL (http/https)');
+      ok = false;
+    }
+
+    /* 4. Message --------------------------------------------------------- */
+    const msg = form.msg.value.trim();
+    if(!msg){
+      setError('row-msg','This field is required');
+      ok = false;
+    }else{
+      clearError('row-msg');
+    }
+
+    /* if everything passed, you can send the data via fetch/ajax, show
+       a thank-you div, redirect, etc.  For demo purposes we just alert.  */
+    if(ok){
+      alert('Form submitted successfully 🙂');
+      form.reset();
+    }
+  });
+</script>
+</body>
+</html>
