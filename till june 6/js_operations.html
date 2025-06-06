@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mini JS Assignments</title>
+
+<!-- ─── CSS ─────────────────────────────────────────────────────────────── -->
+<style>
+  :root {
+    --accent: #009688;
+  }
+  * { box-sizing: border-box; }
+  body{
+    font-family: Arial, sans-serif;
+    background:#f4f8fb;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top:40px;
+  }
+  .card{
+    background:#fff;
+    padding:2rem 3rem;
+    border-radius:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    width:320px;
+  }
+  h1{
+    text-align:center;
+    margin:0 0 1.5rem;
+    font-size:1.4rem;
+    color:var(--accent);
+  }
+  label{
+    display:block;
+    margin-bottom:.25rem;
+    font-weight:600;
+  }
+  select,
+  input[type="number"]{
+    width:100%;
+    padding:.55rem;
+    margin-bottom:1rem;
+    border:1px solid #ccc;
+    border-radius:4px;
+    font-size:.95rem;
+  }
+  button{
+    width:100%;
+    padding:.6rem;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:4px;
+    font-size:1rem;
+    cursor:pointer;
+    transition:background .2s;
+  }
+  button:hover{ background:#00796b; }
+
+  #output{
+    margin-top:1.2rem;
+    font-weight:bold;
+    white-space:pre-line; /* keep new-lines for the Hello list             */
+    min-height:1.25rem;   /* avoids layout jump when clearing the output    */
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HTML (structure) ────────────────────────────────────────────────── -->
+<div class="card">
+  <h1>JS Mini Tasks</h1>
+
+  <label for="task">Choose an operation:</label>
+  <select id="task">
+    <option value="sign">Check Sign (+ / – / 0)</option>
+    <option value="grade">Find Grade (0 – 100)</option>
+    <option value="hello">Print “Hello” N times</option>
+  </select>
+
+  <label for="param" id="paramLabel">Enter a number:</label>
+  <input type="number" id="param" placeholder="e.g. 5">
+
+  <button id="runBtn">Run</button>
+
+  <div id="output"></div>
+</div>
+
+<!-- ─── JavaScript ──────────────────────────────────────────────────────── -->
+<script>
+  // grab elements once
+  const taskEl    = document.getElementById('task');
+  const paramEl   = document.getElementById('param');
+  const paramLab  = document.getElementById('paramLabel');
+  const outputEl  = document.getElementById('output');
+
+  /* update label / placeholder when user changes the task ---------------- */
+  taskEl.addEventListener('change', () => {
+    outputEl.textContent = '';                         // clear previous result
+    switch (taskEl.value) {
+      case 'sign':
+        paramLab.textContent = 'Enter a number:';
+        paramEl.placeholder = 'e.g. -10, 0, 25';
+        break;
+      case 'grade':
+        paramLab.textContent = 'Enter your marks (0-100):';
+        paramEl.placeholder = 'e.g. 85';
+        break;
+      case 'hello':
+        paramLab.textContent = 'How many times to print “Hello”?';
+        paramEl.placeholder = 'e.g. 14';
+        break;
+    }
+  });
+
+  /* main logic when the button is pressed -------------------------------- */
+  document.getElementById('runBtn').addEventListener('click', () => {
+    const n = Number(paramEl.value.trim());
+
+    if (paramEl.value.trim() === '' || isNaN(n)) {
+      outputEl.textContent = '⚠️ Please enter a valid number.';
+      return;
+    }
+
+    switch (taskEl.value) {
+      /* 1 — sign check (positive, negative, zero) */
+      case 'sign':
+        outputEl.textContent = n > 0
+          ? 'The number is Positive.'
+          : n < 0
+            ? 'The number is Negative.'
+            : 'The number is Zero.';
+        break;
+
+      /* 2 — grading */
+      case 'grade':
+        if (n < 0 || n > 100) {
+          outputEl.textContent = '⚠️ Marks must be between 0 and 100.';
+          break;
+        }
+        let grade;
+        if      (n >= 90) grade = 'A';
+        else if (n >= 80) grade = 'B';
+        else if (n >= 70) grade = 'C';
+        else if (n >= 60) grade = 'D';
+        else              grade = 'F';
+        outputEl.textContent = `Grade: ${grade}`;
+        break;
+
+      /* 3 — print “Hello” list */
+      case 'hello':
+        if (!Number.isInteger(n) || n <= 0) {
+          outputEl.textContent = '⚠️ Enter a positive integer.';
+          break;
+        }
+        let lines = '';
+        for (let i = 1; i <= n; i++) lines += `${i}. Hello\n`;
+        outputEl.textContent = lines.trimEnd();
+        break;
+    }
+  });
+</script>
+</body>
+</html>
