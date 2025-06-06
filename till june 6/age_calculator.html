@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Age Calculator</title>
+
+<!-- ─── CSS ─────────────────────────────────────────────────────────────── -->
+<style>
+  :root{
+    --brand: #7b5bf3;  /* violet-purple background   */
+    --white: #ffffff;
+    --shadow: 0 6px 18px rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background:var(--brand);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:var(--white);
+    text-align:center;
+  }
+
+  h1{
+    letter-spacing:2px;
+    font-size:2.2rem;
+    margin-bottom:60px;
+    text-transform:uppercase;
+  }
+
+  /* ── input container ─────────────────────────────────────────────────── */
+  .input-box{
+    background:var(--white);
+    padding:18px 22px;
+    border-radius:10px;
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    box-shadow:var(--shadow);
+  }
+  .input-box input[type="date"]{
+    border:none;
+    font-size:1rem;
+    padding:8px 10px;
+    border-radius:4px;
+    outline:none;
+  }
+  .input-box button{
+    border:none;
+    padding:9px 22px;
+    background:var(--brand);
+    color:var(--white);
+    font-size:1rem;
+    border-radius:4px;
+    cursor:pointer;
+    transition:transform .1s ease;
+  }
+  .input-box button:active{ transform:scale(.95); }
+
+  /* ── results grid ─────────────────────────────────────────────────────── */
+  .result{
+    margin-top:65px;
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .box{
+    background:var(--white);
+    color:#000;
+    width:120px;
+    padding:28px 10px 22px;
+    border-radius:8px;
+    box-shadow:var(--shadow);
+  }
+  .box span{
+    display:block;
+    font-size:2.2rem;
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .warning{
+    margin-top:20px;
+    font-weight:600;
+    color:#ffdf56;
+  }
+</style>
+</head>
+<body>
+
+<h1>Age Calculator</h1>
+
+<div class="input-box">
+  <input type="date" id="dob" placeholder="MM/DD/YYYY">
+  <button id="calcBtn">Calculate</button>
+</div>
+
+<div id="warn" class="warning"></div>
+
+<div class="result">
+  <div class="box">
+    <span id="years">00</span>
+    YEAR
+  </div>
+  <div class="box">
+    <span id="months">00</span>
+    MONTH
+  </div>
+  <div class="box">
+    <span id="days">00</span>
+    DAY
+  </div>
+</div>
+
+<!-- ─── JavaScript ──────────────────────────────────────────────────────── -->
+<script>
+  const dobInput = document.getElementById('dob');
+  const btn      = document.getElementById('calcBtn');
+  const warnBox  = document.getElementById('warn');
+  const yEl = document.getElementById('years');
+  const mEl = document.getElementById('months');
+  const dEl = document.getElementById('days');
+
+  btn.addEventListener('click', () => {
+    warnBox.textContent = '';                 // clear previous warning
+    const dobVal = dobInput.value;
+    if(!dobVal){
+      warnBox.textContent = 'Please choose your birth-date first.';
+      return;
+    }
+
+    const dob   = new Date(dobVal);
+    const today = new Date();
+
+    if (dob > today){
+      warnBox.textContent = 'Birth-date cannot be in the future.';
+      return;
+    }
+
+    /* ---- compute difference (years, months, days) ---------------------- */
+    let years  = today.getFullYear() - dob.getFullYear();
+    let months = today.getMonth()    - dob.getMonth();
+    let days   = today.getDate()     - dob.getDate();
+
+    if (days < 0){
+      /* borrow days from previous month */
+      const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+      days += prevMonth;
+      months -= 1;
+    }
+    if (months < 0){
+      months += 12;
+      years  -= 1;
+    }
+
+    /* ---- update UI ------------------------------------------------------ */
+    yEl.textContent = String(years ).padStart(2,'0');
+    mEl.textContent = String(months).padStart(2,'0');
+    dEl.textContent = String(days  ).padStart(2,'0');
+  });
+</script>
+</body>
+</html>
