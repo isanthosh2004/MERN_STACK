@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlickFinder</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #14213d;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1f2a40;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-weight: bold;
+      color: #00ffcc;
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    nav a.active {
+      color: #00ffcc;
+    }
+
+    .favorite-button {
+      background-color: #00ffcc;
+      color: black;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .section {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .slider {
+      position: relative;
+      text-align: center;
+    }
+
+    .slide-img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Flick<span style="color:white">Finder</span></div>
+  <nav>
+    <a href="#" onclick="showSection('home')" class="active">Home</a>
+    <a href="#" onclick="showSection('tv')">TV Show</a>
+    <a href="#" onclick="showSection('movie')">Movie</a>
+    <a href="#" onclick="showSection('upcoming')">Upcoming</a>
+  </nav>
+  <button class="favorite-button" onclick="showSection('favorite')">Favorite</button>
+</header>
+
+<div id="home" class="section active">
+  <div class="slider">
+    <img id="slideImage" class="slide-img" src="https://picsum.photos/id/1011/800/400" alt="slide" />
+    <button class="slide-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="slide-btn next" onclick="changeSlide(1)">&#10095;</button>
+  </div>
+  <h2>Bringing the Big Screen to Your Screen</h2>
+  <p>Discover, critique, and celebrate movies<br>with honest reviews and fresh takes on every film</p>
+  <button class="favorite-button">Discover More</button>
+</div>
+
+<div id="tv" class="section">
+  <h2>TV Shows</h2>
+  <p>Explore the best of TV series here.</p>
+</div>
+
+<div id="movie" class="section">
+  <h2>Movies</h2>
+  <p>Find your favorite movies and reviews.</p>
+</div>
+
+<div id="upcoming" class="section">
+  <h2>Upcoming</h2>
+  <p>Get ready for the next big releases.</p>
+</div>
+
+<div id="favorite" class="section">
+  <h2>Favorite List</h2>
+  <p>Your saved favorites will appear here.</p>
+</div>
+
+<script>
+  const sections = document.querySelectorAll(".section");
+  const navLinks = document.querySelectorAll("nav a");
+  let currentSlide = 0;
+  const slides = [
+    "https://picsum.photos/id/1011/800/400",
+    "https://picsum.photos/id/1015/800/400",
+    "https://picsum.photos/id/1025/800/400"
+  ];
+
+  function showSection(id) {
+    sections.forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    navLinks.forEach(link => link.classList.remove("active"));
+    document.querySelectorAll(`nav a[onclick*='${id}']`).forEach(link => link.classList.add("active"));
+  }
+
+  function changeSlide(dir) {
+    currentSlide = (currentSlide + dir + slides.length) % slides.length;
+    document.getElementById("slideImage").src = slides[currentSlide];
+  }
+</script>
+
+</body>
+</html>
